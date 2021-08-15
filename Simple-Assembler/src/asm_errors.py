@@ -313,10 +313,16 @@ def error_check(command_input):
             # its variable declarations
             if(var_declare):
 
-                # Checking variable declaration
-                error = var_declare_check(command_individual_line, i+1)
+                if len(command_individual_line) == 2:
+                    # Checking variable declaration
+                    error = var_declare_check(command_individual_line, i+1)
 
-                if error:
+                    if error:
+                        return True
+                
+                else:
+                    print(
+                    f"VARIABLE_ERROR: In line {i+1} \n\tVariable declaration syntax is invalid")
                     return True
 
             else:
@@ -332,6 +338,13 @@ def error_check(command_input):
                 
                 # Its a valid first word
                 if command_individual_line[0][:-1] in label_names_list:
+
+                    if len(command_individual_line[0][:-1]) != 0:
+                        continue
+                    else:
+                        print(
+                            f"LABEL_ERROR: In line {i+1} \n\tThe declared label is empty")
+                        return True
 
                     # This is to prevent double declaration of labels
                     if command_individual_line[0][:-1] not in label_names_list2:
@@ -359,13 +372,13 @@ def error_check(command_input):
 
             if command_individual_line[0][:-1] in label_names_list:
             # Its a valid label
-                if command_individual_line[1] == "hlt":
+                if command_individual_line[1] == "hlt" and len(command_individual_line[0][:-1]) != 0:
                     return False
                 else:
                     print(
                     f"SYNTAX_ERROR: In line {i+1} \n\tThe given instruction syntax is invalid")
                     print(
-                    f"HALT_ERROR: In line {i+1} \n\tMissing hlt instruction")
+                    f"HALT_ERROR: In line {i+1} \n\tMissing or Invalid hlt instruction")
                     return True
                     
             else:
@@ -374,9 +387,9 @@ def error_check(command_input):
                         return False
                     else:
                         print(
-                        f"HALT_ERROR: In line {i+1} \n\tMissing hlt instruction")
+                        f"HALT_ERROR: In line {i+1} \n\tMissing or Invalid hlt instruction")
                         return True
                 else:
                     print(
-                        f"HALT_ERROR: In line {i+1} \n\tMissing hlt instruction")
+                        f"HALT_ERROR: In line {i+1} \n\tMissing or Invalid hlt instruction")
                     return True
