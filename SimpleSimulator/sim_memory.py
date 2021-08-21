@@ -17,7 +17,7 @@
 
 import matplotlib.pyplot as plt
 from sys import stdin
-from Converter import *
+from sim_converter import *
 
 class Memory:
     cycle = 0
@@ -42,15 +42,6 @@ class Memory:
                 break
             self.memory_stack.append(str(memory_instruction))
 
-        # while True:
-        #     memory_instruction = input()
-        #     if memory_instruction == 'quit':
-        #         break
-        #     else:
-        #         # Appending to master list of commands
-        #         self.memory_stack.append(str(memory_instruction))
-
-
     def fetch(self, pc_val, cycle):
         # fetches the instruction corresponding to the given pc_val and returns it
         
@@ -71,6 +62,7 @@ class Memory:
             print(self.memory_stack[i])
 
 
+# This is part of question 3
     def showTraces(self):
         # generate a scatter plot with the cycle number on the x-axis 
         # and the memory address on the y-axis
@@ -81,12 +73,5 @@ class Memory:
         plt.xlabel("Cycle")
         plt.ylabel("Memory Address")
         plt.savefig('plot.png')
-    
-
-# print("hello mera naam")
-# m = Memory()
-# m.cycle = 3
-# m.cycle_address = ["0", "1", "2"]
-# m.showTraces()
 
     

@@ -17,7 +17,7 @@
 # greaterThan()
 # equal()
 
-from Converter import *
+from sim_converter import *
 
 class RegisterFile:
 
@@ -198,26 +198,3 @@ class RegisterFile:
         flagsList = list(self.register_stack[-1])
         
         return flagsList[15] == "1"
-    
-    
-
-# CHECKING STATION
-# DELETE IF NOT REQUIRED
-# registerFile = RegisterFile()
-# registerFile.update("100", "1000100010001000")
-# registerFile.dump()
-
-# registerFile.lessThan()
-# registerFile.dump()
-
-# registerFile.greaterThan()
-# registerFile.dump()
-
-# registerFile.equal()
-# registerFile.dump()
-
-# registerFile.overflow()
-# registerFile.dump()
-    
-# registerFile.reset("110")
-# registerFile.dump()

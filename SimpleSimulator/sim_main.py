@@ -2,11 +2,11 @@
 # MAIN FILE
 # ---------------
 
-from ProgramCounter import ProgramCounter
-from Memory import Memory
-from RegisterFile import RegisterFile
-from ExecutionEngine import ExecutionEngine
-from Converter import *
+from sim_program_counter import ProgramCounter
+from sim_memory import Memory
+from sim_register_file import RegisterFile
+from sim_execution_engine import ExecutionEngine
+from sim_converter import *
 
 def main():
     memory = Memory()
@@ -26,7 +26,7 @@ def main():
         cycle += 1
 
     memory.dump()
-    # memory.showTraces()
+    memory.showTraces()
 
 if __name__ == '__main__':
     main()

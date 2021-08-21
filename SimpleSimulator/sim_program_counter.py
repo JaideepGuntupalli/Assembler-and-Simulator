@@ -15,7 +15,7 @@
 # PC
 #   stores the address corresponding to the cycle in which that address was called
 
-from Converter import *
+from sim_converter import *
 
 class ProgramCounter:
     PC = "" # the value stored here is in binary

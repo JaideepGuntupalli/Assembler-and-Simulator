@@ -1,3 +1,7 @@
+# This file is for handling conversions between binary and decimals
+
+# ----- Decimal -> Binary [START]-----
+
 def bin(dec_int):
     if dec_int == 0:
         return 0
@@ -19,6 +23,10 @@ def dectobin(dec_int):
 
     return bin_str_ans
 
+# ----- Decimal -> Binary [END]-----
+
+# ----- Binary -> Decimal [START]-----
+
 def dec(bin_str, i = 0):
     
     bin_len = len(bin_str)
@@ -35,7 +43,7 @@ def bintodec(bin_str):
     
     return dec_int
 
-
+# ----- Binary -> Decimal [END]-----
 
 
 
