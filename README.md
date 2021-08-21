@@ -1,5 +1,5 @@
 # CO M21 Assignment
-Starter repository for Computer Organization, Monsoon 2021 semester, assignment at IIITD
+Assignment repository for Computer Organization by Jaideep Guntupalli, Kabir Singh Mehrok, Jatin Tyagi for Monsoon 2021 semester[IIITD]
 
 ## Adding code
 * Add the assembler code in the `Simple-Assembler` directory. Add the commands to execute the assembler in `Simple-Assembler/run`.
