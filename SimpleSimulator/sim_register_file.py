@@ -43,7 +43,7 @@ class RegisterFile:
             returns register value: in binary
         '''
 
-        index = int(register_no, 2)
+        index = bintodec(register_no)
         return self.register_stack[index]
 
     def update(self, register_no, value):
@@ -55,7 +55,7 @@ class RegisterFile:
         OUTPUT: 
             returns nothing
         '''
-        index = int(register_no, 2)
+        index = bintodec(register_no)
         self.register_stack[index] = value
     
     def reset(self, register_no):

@@ -147,7 +147,7 @@ class ExecutionEngine:
                 #MULTIPLY
                 b=bintodec(self.r.fetch(inst[10:13])) # 1st value
                 c=bintodec(self.r.fetch(inst[13:16])) # 2nd value
-                mult=b*C
+                mult=b*c
                 
                 if mult>65535:
                     self.r.overflow()
@@ -236,7 +236,7 @@ class ExecutionEngine:
                 
                 a=a[::-1]
                 final=a[0:-(b)]
-                self.r.update(inst[0:5],final)
+                self.r.update(inst[5:8],final)
 
 
             elif inst[0:5]=="01001":
@@ -248,7 +248,7 @@ class ExecutionEngine:
                     a=a+"0"
                 
                 final=a[b::1]
-                self.r.update(inst[0:5],final)
+                self.r.update(inst[5:8],final)
 
         
 

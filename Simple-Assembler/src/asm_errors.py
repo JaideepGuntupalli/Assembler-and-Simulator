@@ -5,7 +5,7 @@ import string
 valid_var_char = list(string.ascii_lowercase +
                       string.ascii_uppercase + string.digits)
 valid_var_char.append('_')
-instruction_names_list = ["add", "sub", "mov", "ld", "st", "mul", "div",
+instruction_names_list = ["add", "sub", "mov", "ld", "st", "mul", "div", "rs",
                           "ls", "xor", "or", "and", "not", "cmp", "jmp", "jlt", "jgt", "je", "hlt"]
 register_names_list = ["R0", "R1", "R2", "R3", "R4", "R5", "R6"]
 extended_register_names_list = ["R0", "R1",
