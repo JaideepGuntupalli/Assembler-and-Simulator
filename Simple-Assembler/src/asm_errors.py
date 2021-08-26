@@ -81,31 +81,22 @@ def errorA(command_individual_line,line):
 def errorB(command_individual_line,line):
     ''' Checks whether the given instruction for TYPE B is 
         declared properly and print errors if any present
-    '''  
+    '''
     if command_individual_line[1] in register_names_list:
         
         if command_individual_line[2][0] == "$":
         
             try:
-                int(command_individual_line[2][1:])
+                result = int(command_individual_line[2][1:])
+                if result > 255 or result < 0:
+                    raise ValueError
                 int_is = True
             except ValueError:
-                int_is = False
-                    
-                if(int_is):
-                    
-                    if int(command_individual_line[2][1:]) >= 0 or int(command_individual_line[2][1:]) <= 255:
-                        return False
-                    
-                    else:
-                        print(
-                        f"IMMEDIATE_ERROR: In line {line} \n\tThe given immediate value is illegal or not given properly")
-                        return True
-                
-                else:
-                    print(
-                    f"IMMEDIATE_ERROR: In line {line} \n\tThe given immediate value is illegal or not given properly")
-                    return True
+                print(f"IMMEDIATE_ERROR: In line {line} \n\tThe given immediate value is illegal or not given properly")
+                return True
+            return False
+        else:
+            return False
     
     else:
         print(
@@ -158,6 +149,7 @@ def instruction_error_check(command_individual_line,line):
 
     # Len 4
     # TYPE A
+    #print(f"DEBUG {command_individual_line=}")
     if(len(command_individual_line) == 4):
 
         typeA_valid_instructions = ["add","sub","mul","xor","or","and"]
@@ -189,27 +181,7 @@ def instruction_error_check(command_individual_line,line):
                     return False
         
                 elif command_individual_line[2][0] == "$":
-        
-                    try:
-                        int(command_individual_line[2][1:])
-                        int_is = True
-                    except ValueError:
-                        int_is = False
-                    
-                    if(int_is):
-                        
-                        if int(command_individual_line[2][1:]) >= 0 or int(command_individual_line[2][1:]) <= 255:
-                            return False
-                        
-                        else:
-                            print(
-                            f"IMMEDIATE_ERROR: In line {line} \n\tThe given immediate value is illegal or not given properly")
-                            return True
-                    
-                    else:
-                        print(
-                        f"IMMEDIATE_ERROR: In line {line} \n\tThe given immediate value is illegal or not given properly")
-                        return True
+                    return errorB(command_individual_line,line)
                 
                 else:
                     print(
@@ -223,12 +195,7 @@ def instruction_error_check(command_individual_line,line):
         
         #TYPE B
         elif command_individual_line[0] == "rs" or command_individual_line[0] == "ls":
-
-            if errorB(command_individual_line,line):
-                return True
-            
-            else:
-                return False
+            return errorB(command_individual_line, line)
         
         #TYPE C
         elif command_individual_line[0] in typeC_valid_instructions:
@@ -338,9 +305,11 @@ def error_check(command_input):
                 
                 # Its a valid first word
                 if command_individual_line[0][:-1] in label_names_list:
+                    #print(f"DEBUG {label_names_list=}")
 
                     if len(command_individual_line[0][:-1]) != 0:
-                        continue
+                        #continue
+                        pass
                     else:
                         print(
                             f"LABEL_ERROR: In line {i+1} \n\tThe declared label is empty")

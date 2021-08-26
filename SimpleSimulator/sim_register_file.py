@@ -78,6 +78,8 @@ class RegisterFile:
             returns nothing
             prints ><R0 (16 bits)><space>...<R6 (16 bits)><space><FLAGS (16 bits)>
         '''
+        print(' '.join(map(str, self.register_stack)), end=' \n')
+        return
         for index in range(len(self.register_stack)):
             print(self.register_stack[index], end =" ")
         print()

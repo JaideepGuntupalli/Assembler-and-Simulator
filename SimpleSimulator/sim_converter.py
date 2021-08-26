@@ -9,7 +9,11 @@ def bin(dec_int):
         return (dec_int % 2 + 10 * bin(int(dec_int // 2)))
 
 
-def dectobin(dec_int):
+def dectobin(dec_str):
+
+    return format(int(dec_str), "016b")
+
+    dec_int = int(dec_str)
 
     bin_int = bin(dec_int)
 

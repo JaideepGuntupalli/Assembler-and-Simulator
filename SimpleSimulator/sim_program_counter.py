@@ -21,7 +21,7 @@ class ProgramCounter:
     PC = "" # the value stored here is in binary
 
     def __init__(self, val):
-        self.PC = dectobin(val)
+        self.PC = format(val, "08b")
 
     def getVal(self):
         return self.PC

@@ -70,6 +70,7 @@ def bin(dec_int):
 
 
 def dec_bin(dec_str):
+    return format(int(dec_str), "08b")
 
     dec_int = int(dec_str)
 
@@ -122,7 +123,9 @@ def binB(command_individual_line):
     machine_code += reg[command_individual_line[1]]
 
     # Convering immediate value to 8-bit binary
-    imm = dec_bin(command_individual_line[2][1:])
+    imm = command_individual_line[2][1:]
+
+    imm = dec_bin(imm)
 
     # Calculating total length to
     len_imm = len(imm)

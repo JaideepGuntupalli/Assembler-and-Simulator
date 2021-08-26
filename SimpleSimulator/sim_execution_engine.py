@@ -59,7 +59,7 @@ class ExecutionEngine:
 
         a = ["00000","00001","00110","01010","01011","01100"]
         b = ["00010","01000","01001"]
-        c = ["00011","00111","01110"]
+        c = ["00011","00111","01110", "01101"]
         d = ["00100","00101"]
         e = ["01111","10000","10001","10010"]
         f = ["10011"]      
@@ -103,7 +103,17 @@ class ExecutionEngine:
                 #SUBTRACT
                 a=(self.r.fetch(inst[10:13])) # 1st value for subtraction
                 b=(self.r.fetch(inst[13:16])) # 2nd value for subtraction
-                
+
+                a = bintodec(a)
+                b = bintodec(b)
+
+                result = a-b
+                if result < 0:
+                    self.r.overflow()
+                    result = 0
+
+                self.r.update(inst[7:10], dectobin(result))
+                '''                
                 answer  = '' # for calculating answer
                 carry   = 0  # variable which will check for overflow
 
@@ -140,7 +150,7 @@ class ExecutionEngine:
                 else: # else assigning value to register
                     answer=answer[::-1]
                     self.r.update(inst[7:10],answer)
-                
+                '''
 
             elif inst[0:5]=="00110":
                 
@@ -151,10 +161,13 @@ class ExecutionEngine:
                 
                 if mult>65535:
                     self.r.overflow()
-                    mult=mult-65535
+                    mult %= 65536
+                    #mult=dectobin(mult)
+                    # mult=mult-65535
+                    #mult = mult[-16:]
                 
                 mult=dectobin(mult)
-                mult=mult.zfill(16)
+                #mult=mult.zfill(16)
                 self.r.update(inst[7:10],mult)
                 
 
@@ -185,13 +198,7 @@ class ExecutionEngine:
                 
                 final=""
                 
-                for i in range(len(b)): # performing the or operation
-                
-                    if(b[i]==c[i]):
-                        final=final+"1"
-                
-                    else:
-                        final=final+"0"
+                final = dectobin(bintodec(b) | bintodec(c))
                 
                 # updating the values
                 self.r.update(inst[7:10],final)
@@ -272,18 +279,12 @@ class ExecutionEngine:
                 self.r.update("001",d) 
                 self.r.reset("111")
 
-
             elif inst[0:5]=="01101":
                 #not
                 b=self.r.fetch(inst[13:16])#getting the value stored in the 2nd register
-                b=str(b)#converting the value to a string value
-                not_b=""#inverted b
-                for i in b:
-                    if i=="1":
-                        not_b=not_b+"0"
-                    else:
-                        not_b=not_b+"1"
-                self.r.update(inst[10:13],not_b)#updating value in 1st register as the inverted value of value in 2nd register
+                final=~bintodec(b)&65535
+                final=dectobin(final)
+                self.r.update(inst[10:13],final)#updating value in 1st register as the inverted value of value in 2nd register
                 self.r.reset("111")
 
 
@@ -292,6 +293,7 @@ class ExecutionEngine:
                 #fetching values of registers
                 a=self.r.fetch(inst[10:13])#value of 1st register
                 b=self.r.fetch(inst[13:16])#value of 2nd register
+                self.r.reset("111")
                 if (a==b):
                     self.r.equal()
                 elif (a>b):
@@ -307,11 +309,13 @@ class ExecutionEngine:
             self.r.reset("111")
             if inst[0:5]=="00100":
                 # load
-                self.r.update(inst[5:8], self.m.memory_stack[bintodec(inst[8:16])])
+                data = self.m.getData(bintodec(inst[8:16]))
+                self.r.update(inst[5:8], data)
 
             elif inst[0:5]=="00101":
                 # store
-                self.m.memory_stack[bintodec(inst[8:16])] = self.r.fetch(inst[5:8])
+                data = self.r.fetch(inst[5:8])
+                self.m.setData(dec(inst[8:16]), data)
 
         #defining for type E
         def E(self,inst):
@@ -375,7 +379,8 @@ class ExecutionEngine:
 
         currPC = bintodec(self.to_return[1])
         nextPC = currPC + 1
-        self.to_return[1] = dectobin(nextPC)
+        self.to_return[1] = format(nextPC, "08b")   #dectobin(nextPC)
 
         return self.to_return
         
+

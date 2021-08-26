@@ -19,10 +19,13 @@ import matplotlib.pyplot as plt
 from sys import stdin
 from sim_converter import *
 
+x_axis = []
+y_axis = []
+
 class Memory:
-    cycle = 0
-    cycle_address = []
-    memory_stack = []
+    #cycle = 0
+    #cycle_address = []
+    #memory_stack = []
 
     def __init__(self):
         # intiazlizes the memory by taking input
@@ -31,6 +34,16 @@ class Memory:
         self.memory_stack = []
         self.memory_input()
         self.memory_creator()
+
+    def getData(self, address):
+        x_axis.append(self.cycle)
+        y_axis.append(address)
+        return self.memory_stack[address]
+
+    def setData(self, address, data):
+        x_axis.append(self.cycle)
+        y_axis.append(address)
+        self.memory_stack[address] = data
 
     def memory_creator(self):
         for i in range(256-len(self.memory_stack)):
@@ -49,6 +62,8 @@ class Memory:
         #  which will be used for scatter plot
         self.cycle = cycle
         self.cycle_address.append(bintodec(pc_val))
+        x_axis.append(cycle)
+        y_axis.append(bintodec(pc_val))
 
         # now we return the address
         instruction_id = bintodec(pc_val)
@@ -59,19 +74,22 @@ class Memory:
         # dumps all the memory instructions
 
         for i in range(len(self.memory_stack)):
-            print(self.memory_stack[i])
+            print(self.memory_stack[i].strip('\n'))
 
 
 # This is part of question 3
     def showTraces(self):
         # generate a scatter plot with the cycle number on the x-axis 
         # and the memory address on the y-axis
-        cycle_number = [i for i in range(self.cycle+1)]
+        #cycle_number = [i for i in range(self.cycle+1)]
         
         # now we plot the graph
-        plt.scatter(cycle_number, self.cycle_address)
+
+        #plt.scatter(cycle_number, self.cycle_address)
+
+
+        plt.scatter(x_axis, y_axis)
         plt.xlabel("Cycle")
         plt.ylabel("Memory Address")
         plt.savefig('plot.png')
-
-    
+        return
