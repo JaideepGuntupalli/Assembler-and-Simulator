@@ -1,6 +1,8 @@
-# AUTHORS: Jaideep Guntupalli(2020378), Kabir Singh Mehrok(2020382), Jatin Tyagi(2020381)
+# AUTHORS: Jaideep Guntupalli, Kabir Singh Mehrok and Jatin Tyagi
+
 # This is the main file to run the whole assembler and output machine code from given instructions
 # Also checking for any errors
+
 # Files involved: asm_mem.py,asm_errors.py and asm-binary_encoder.py
 # NOTES : Some files also require other files which are'nt mentioned here
 
