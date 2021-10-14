@@ -42,6 +42,7 @@ which declares a 16 bit variable called xyz. This variable name can be used in p
 	h. Missing hlt instruction  
 	i. hlt not being used as the last instruction  
 	j. Wrong syntax used for instructions (For example, add instruction being used as a type B instruction )  
+
 Distinct readable errors will be generated for all these conditions. The assembler will print out all these errors. 
 If the code is error free, then the corresponding binary is generated. The binary is printed on to the console in which each line is a 16bit binary number written using 0s and 1s in ASCII. The assembler can write less than or equal to 256 lines. 
 
@@ -76,22 +77,22 @@ The simulator will load the binary in the system memory at the beginning, and th
 
 The input will be read from stdin.
 
-Output format:
+Output format:  
 <PC (8 bits)> <space> <R0 (16 bits)> <space>...<R6 (16 bits)> <space> <FLAGS (16 bits)>
 
 The output will be written to stdout.
 
 After the program is halted, print the memory dump of the whole memory. This should be 256 lines, each having a 16-bit value 
 
-< 16-bit data> 
-< 16-bit data> 
-….. 
-< 16-bit data> 
+< 16-bit data>   
+< 16-bit data>  
+…..  
+< 16-bit data>  
 
-The simulator also have the following distinct components: 
-1. Memory (MEM): MEM takes in an 8-bit address and returns a 16-bit value as the data. The MEM stores 512bytes, initialized to 0s. 
-2. Program Counter (PC): The PC is an 8-bit register that points to the current instruction. 
-3. Register File (RF): The RF takes in the register name (R0, R1, … R6 or FLAGS) and returns the value stored at that register. 
+The simulator also have the following distinct components:  
+1. Memory (MEM): MEM takes in an 8-bit address and returns a 16-bit value as the data. The MEM stores 512bytes, initialized to 0s.  
+2. Program Counter (PC): The PC is an 8-bit register that points to the current instruction.  
+3. Register File (RF): The RF takes in the register name (R0, R1, … R6 or FLAGS) and returns the value stored at that register.   
 4. Execution Engine (EE): The EE takes the address of the instruction from the PC, uses it to get the stored instruction from MEM, and executes the instruction by updating the RF and PC. 
 
 The Simulator code exists in the `SimpleSimulator` directory.
@@ -112,10 +113,10 @@ Run the shell script in `SimpleSimulator/run` in a bash terminal to execute the 
 * Make sure that both the assembler and the simulator write to `stdout`.
 
 	
-##How to evaluate the commits
+## How to evaluate the commits
 
 * Go to the automatedTesting directory and execute the run file with appropiate options passed as arguments.
-* Options available for automated testing:
-        --verbose: Prints verbose output
-        --no-asm: Does not evaluate the assembler
-        --no-sim: Does not evaluate the simulator
+* Options available for automated testing:  
+        --verbose: Prints verbose output  
+        --no-asm: Does not evaluate the assembler  
+        --no-sim: Does not evaluate the simulator  
