@@ -3,7 +3,7 @@ Repository by Jaideep Guntupalli, Kabir Singh Mehrok and Jatin Tyagi.
 
 This repository contains an Assembler and Simulator.
 
-##Assembler
+## Assembler
 Assembler takes in assembly language as input and returns 16 bit machine code.
 
 Each line of the input may be of one of 4 types: 
@@ -27,7 +27,7 @@ A label followed by the instruction may looks like:
 which declares a 16 bit variable called xyz. This variable name can be used in place of mem_addr fields in load and store instructions. All variables must be defined at the very beginning of the assembly program. A variable name consists of alphanumeric characters and underscores. 
 * Each line may be preceded by whitespace. 
 
-###The assembler is be capable of: 
+### The assembler is be capable of: 
 1. Handling all supported instructions 
 2. Handling labels 
 3. Handling variables 
@@ -45,7 +45,7 @@ j. Wrong syntax used for instructions (For example, add instruction being used a
 Distinct readable errors will be generated for all these conditions. The assembler will print out all these errors. 
 If the code is error free, then the corresponding binary is generated. The binary is printed on to the console in which each line is a 16bit binary number written using 0s and 1s in ASCII. The assembler can write less than or equal to 256 lines. 
 
-###Example of an assembly program 
+### Example of an assembly program 
 
 Input:
 
@@ -69,7 +69,7 @@ The assembler code exists in the `Simple-Assembler` directory.
 
 Run the shell script in `Simple-Assembler/run` in a bash terminal to execute the Assembler
 
-##Simulator
+## Simulator
 Simulator takes in 16 bit machine code as input and prints/dumps memory state at the end of the program.
 
 The simulator will load the binary in the system memory at the beginning, and then start executing the code at address 0. The code is executed until hlt is reached. After execution of each instruction, the simulator will output one line containing an 8-bit number denoting the program counter. This will be followed by 8 space-separated 16-bit binary numbers denoting the values of the registers (R0, R1, … R6, and FLAGS).
@@ -99,7 +99,7 @@ The Simulator code exists in the `SimpleSimulator` directory.
 Run the shell script in `SimpleSimulator/run` in a bash terminal to execute the Simulator.
 
 	
-##Additional Details about ISA, FLAGS semantics and more
+## Additional Details about ISA, FLAGS semantics and more
 
 * Details about the ISA, FLAGS semantics, Binary Encoding and Executable binary syntax is explanied in the below pdf.
 
