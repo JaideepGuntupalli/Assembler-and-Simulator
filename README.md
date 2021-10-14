@@ -32,16 +32,16 @@ which declares a 16 bit variable called xyz. This variable name can be used in p
 2. Handling labels 
 3. Handling variables 
 4. Making sure that any illegal instruction (any instruction (or instruction usage) which is not supported) results in a syntax error. In particular you must handle: 
-a. Typos in instruction name or register name 
-b. Use of undefined variables 
-c. Use of undefined labels 
-d. Illegal use of FLAGS register 
-e. Illegal Immediate values (less than 0 or more than 255) 
-f. Misuse of labels as variables or vice-versa 
-g. Variables not declared at the beginning
-h. Missing hlt instruction 
-i. hlt not being used as the last instruction 
-j. Wrong syntax used for instructions (For example, add instruction being used as a type B instruction ) 
+	a. Typos in instruction name or register name 
+	b. Use of undefined variables 
+	c. Use of undefined labels 
+	d. Illegal use of FLAGS register 
+	e. Illegal Immediate values (less than 0 or more than 255) 
+	f. Misuse of labels as variables or vice-versa 
+	g. Variables not declared at the beginning
+	h. Missing hlt instruction 
+	i. hlt not being used as the last instruction 
+	j. Wrong syntax used for instructions (For example, add instruction being used as a type B instruction ) 
 Distinct readable errors will be generated for all these conditions. The assembler will print out all these errors. 
 If the code is error free, then the corresponding binary is generated. The binary is printed on to the console in which each line is a 16bit binary number written using 0s and 1s in ASCII. The assembler can write less than or equal to 256 lines. 
 
@@ -58,7 +58,7 @@ hlt
 
 The above program will be converted into the following machine code
 
-0001000100001010 
+0001000100001010
 0001001001100100 
 0011000011001010 
 0010101100000101 
